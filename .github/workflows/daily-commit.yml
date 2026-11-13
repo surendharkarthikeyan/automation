@@ -3,7 +3,7 @@ name: Daily GitHub Activity
 
 on:
   schedule:
-    - cron: '17 6 * * *'
+    - cron: '23 6 * * *'
 
   workflow_dispatch:
 
@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Configure Git
         run: |
@@ -31,4 +31,4 @@ jobs:
         run: |
           git add activity.log
           git commit -m "chore: daily activity update"
-          git push origin HEAD:${GITHUB_REF_NAME}
+          git push origin HEAD
