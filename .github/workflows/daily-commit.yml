@@ -1,0 +1,35 @@
+
+name: Daily GitHub Activity
+
+on:
+  schedule:
+    # Every day at 9:00 PM IST
+    - cron: '30 15 * * *'
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  daily-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure Git
+        run: |
+          git config user.name "${{ secrets.COMMIT_NAME }}"
+          git config user.email "${{ secrets.COMMIT_EMAIL }}"
+
+      - name: Update activity log
+        run: |
+          echo "$(date -u +'%Y-%m-%d') - Daily activity" >> activity.log
+
+      - name: Commit and push
+        run: |
+          git add activity.log
+          git commit -m "chore: daily activity update"
+          git push origin HEAD
