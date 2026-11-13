@@ -3,8 +3,7 @@ name: Daily GitHub Activity
 
 on:
   schedule:
-    # Every day at 9:00 PM IST
-    - cron: '0 6 * * *'
+    - cron: '17 6 * * *'
 
   workflow_dispatch:
 
@@ -32,4 +31,4 @@ jobs:
         run: |
           git add activity.log
           git commit -m "chore: daily activity update"
-          git push origin HEAD
+          git push origin HEAD:${GITHUB_REF_NAME}
