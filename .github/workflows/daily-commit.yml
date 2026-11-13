@@ -4,7 +4,7 @@ name: Daily GitHub Activity
 on:
   schedule:
     # Every day at 9:00 PM IST
-    - cron: '30 15 * * *'
+    - cron: '0 6 * * *'
 
   workflow_dispatch:
 
